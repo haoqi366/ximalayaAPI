@@ -22,7 +22,9 @@ class NetWork:
 
     def getIndexAndID(self, albumID, page, sort, headers=headers):
 
-        pageurl = 'http://www.ximalaya.com/revision/album/getTracksList?albumId={}&pageNum={}&sort={}'.format(albumID, page, sort)
+        pageurl = 'http://www.ximalaya.com/revision/album/getTracksList?albumId={}&pageNum={}&sort={}'.format(albumID,
+                                                                                                              page,
+                                                                                                              sort)
         s = requests.session()
         ret = s.get(url=pageurl, headers=headers).content.decode('utf-8')
         j = loads(ret)
@@ -40,7 +42,7 @@ class NetWork:
         else:
             print("Error:Wrong Src!,TrackID:", trackId)
             print('Src:', src)
-            # exit()
+            return -1
 
     def getMediaFile(self, Download_URL, File_Path, File_Name, headers=headers):
 
@@ -92,7 +94,18 @@ class ExtractData:
         Download_URL = []
 
         for Track in TrackID:
-            Download_URL.append(NetWork.getDownloadUrl("Test", Track))
+            URL = NetWork.getDownloadUrl("Test", Track)
+
+            count = 0
+            while URL == -1 and count < 3:
+                URL = NetWork.getDownloadUrl("Test", Track)
+                count += 1
+
+            if count == 3:
+                print('Try 3 times , fail!')
+                URL = 0
+
+            Download_URL.append(URL)
             # time.sleep(1)
 
         return Download_URL

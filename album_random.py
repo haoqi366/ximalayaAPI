@@ -24,6 +24,8 @@ Download_URL = extractData.extracDownloadUrl(Ran_TrackID)
 print(Ran_TrackID)
 
 for i in range(0, len(Download_URL)):
+    if Download_URL[i] == 0:
+        continue
     filepath = netWork.getMediaFile(Download_URL[i], "C:\\Users\\gavin\\Documents\\Coding\\file", Ran_TrackID[i])
     Trains.trains_to_any(filepath, 'mp3')
     # print(Ran_TrackID)
