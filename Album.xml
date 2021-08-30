@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Data>
+    <Album_List>
+        <Album Name="段子来了">
+            <Album_ID>203355</Album_ID>
+            <Newest_TrackID>448029813</Newest_TrackID>
+        </Album>
+        <Album Name="段子来了精简版">
+            <Album_ID>15864627</Album_ID>
+            <Newest_TrackID>239291901</Newest_TrackID>
+        </Album>
+    </Album_List>
+</Data>
